@@ -5,6 +5,6 @@ namespace DIO.AlunosAutistas
         Leve = 1,
         Moderado = 2,
         Severo = 3
-
+        
     }
 }
