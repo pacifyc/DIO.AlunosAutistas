@@ -10,7 +10,9 @@ namespace DIO.AlunosAutistas
         private string Nome { get; set; }
         private string Conportamento { get; set; }        
         private int Idade { get; set; }
-        private char Sexo { get; set;}
+        private char Sexo { get; set; }
+
+        private bool Excluido { get; set; }
 
         
         public AlunosAutistas(int matricula, Nivel nivel, string nome, string comportamento, int idade, char sexo)
@@ -21,6 +23,10 @@ namespace DIO.AlunosAutistas
             this.Conportamento = comportamento;
             this.Idade = idade;
             this.Sexo = sexo;
+
+            this.Excluido = true;
+
+
 
         }
 
@@ -43,6 +49,11 @@ namespace DIO.AlunosAutistas
         public string retornaNome()
         {
             return this.Nome;
+        }
+
+        public void Excluir()
+        {
+            this.Excluido = true;            
         }
 
 

@@ -7,35 +7,41 @@ namespace DIO.AlunosAutistas
     public class AlunosAutistasRepositorio : IRepositorio<AlunosAutistas>
     {
         private List<AlunosAutistas> listaAlunosAutistas = new List<AlunosAutistas>();
-        
-        public void Atualiza(int id, AlunosAutistas entidade)
+
+        public void Atualiza(int matricula, AlunosAutistas crianca)
         {
-            throw new NotImplementedException();
+            listaAlunosAutistas[matricula] = crianca;
+            //throw new NotImplementedException();
         }
 
         public void Excluir(int matricula)
         {
-            throw new NotImplementedException();
+            listaAlunosAutistas[matricula].Excluir();
+            //throw new NotImplementedException();
         }
 
         public void Insere(AlunosAutistas crianca)
         {
-            throw new NotImplementedException();
+            listaAlunosAutistas.Add(crianca);
+            //throw new NotImplementedException();
         }
 
         public List<AlunosAutistas> Lista()
         {
-            throw new NotImplementedException();
+            return listaAlunosAutistas;
+            //throw new NotImplementedException();
         }
 
         public int ProximoId()
         {
-            throw new NotImplementedException();
+            return listaAlunosAutistas.Count;
+            //throw new NotImplementedException();
         }
 
         public AlunosAutistas RetornaPorMatricula(int matricula)
         {
-            throw new NotImplementedException();
+            return listaAlunosAutistas[matricula];
+            //throw new NotImplementedException();
         }
     }
 }

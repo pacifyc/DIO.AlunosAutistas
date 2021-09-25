@@ -11,7 +11,7 @@ namespace DIO.AlunosAutistas.interfaces
 
         void Excluir(int matricula);
 
-        void Atualiza(int id, T entidade);
+        void Atualiza(int matricula, T crianca);
 
         int ProximoId();
          
