@@ -10,7 +10,7 @@ namespace DIO.AlunosAutistas
 
              CriancaBase aluno = new CriancaBase();
 
-             aluno.Matricula
+             //aluno.Matricula
 
             Console.WriteLine("Hello World!");
         }
