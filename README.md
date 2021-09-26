@@ -18,7 +18,8 @@ Podem ter dificuldades em situações sociais, comportamentos restritivos e repe
 Geralmente, elas têm mais dificuldade com habilidades sociais e em situações sociais, em comparação com as que estão no nível 1. Podem ou não se comunicar verbalmente e, se o fizerem, suas conversas podem ser curtas ou apenas sobre tópicos específicos. Dessa forma, podem precisar de suporte para participar de atividades sociais.
 
 <h2> Nível 3 — Autismo severo </h2>
-As pessoas com autismo nível 3, precisam de muito apoio, já que é a forma mais grave.
+
+- As pessoas com autismo nível 3, precisam de muito apoio, já que é a forma mais grave.
 
 Pessoas com autismo severo apresentam dificuldade significativa na comunicação e nas habilidades sociais, assim como têm comportamentos restritivos e repetitivos que atrapalham seu funcionamento independente nas atividades cotidianas.
 
