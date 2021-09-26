@@ -38,6 +38,9 @@ namespace DIO.AlunosAutistas
             retorno += "Nivel: " +  this.Nivel + Environment.NewLine;
             retorno += "Idade: " +  this.Idade + Environment.NewLine;
             retorno += "Sexo: " +  this.Sexo + Environment.NewLine;
+            retorno += "Excluido" + this.Excluido;
+
+
 
             return retorno;
         }
@@ -49,6 +52,11 @@ namespace DIO.AlunosAutistas
         public string retornaNome()
         {
             return this.Nome;
+        }
+
+          public string retornaComportamento()
+        {
+            return this.Conportamento;
         }
 
         public void Excluir()
