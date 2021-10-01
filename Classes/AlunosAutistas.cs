@@ -54,11 +54,6 @@ namespace DIO.AlunosAutistas
             return this.Nome;
         }
 
-          public string retornaComportamento()
-        {
-            return this.Conportamento;
-        }
-
         public void Excluir()
         {
             this.Excluido = true;            
