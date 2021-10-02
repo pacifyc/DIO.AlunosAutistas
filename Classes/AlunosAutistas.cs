@@ -24,7 +24,7 @@ namespace DIO.AlunosAutistas
             this.Idade = idade;
             this.Sexo = sexo;
 
-            this.Excluido = true;
+            this.Excluido = false;
 
 
 
@@ -38,7 +38,7 @@ namespace DIO.AlunosAutistas
             retorno += "Nivel: " +  this.Nivel + Environment.NewLine;
             retorno += "Idade: " +  this.Idade + Environment.NewLine;
             retorno += "Sexo: " +  this.Sexo + Environment.NewLine;
-            retorno += "Excluido" + this.Excluido;
+            retorno += "Excluido: " + this.Excluido;
 
 
 
@@ -52,6 +52,11 @@ namespace DIO.AlunosAutistas
         public string retornaNome()
         {
             return this.Nome;
+        }
+
+        public bool retornaExcuido()
+        {
+            return this.Excluido;
         }
 
         public void Excluir()

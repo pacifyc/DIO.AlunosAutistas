@@ -34,7 +34,14 @@ namespace DIO.AlunosAutistas
                         break;
 
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        //throw new ArgumentOutOfRangeException();
+                        Console.Clear();
+                        Console.WriteLine("Opção invalida");
+                        Console.WriteLine();
+                        Console.Write("Pressione a tecla < ENTER >  para continua... ");
+                        Console.ReadLine();
+                        break;
+                        
 
                 }
 
@@ -46,26 +53,65 @@ namespace DIO.AlunosAutistas
 
         private static void VisualizarAlunos()
 		{
-			Console.Write("Digite a Matricula do Aluno da série: ");
-			int indiceMatricula = int.Parse(Console.ReadLine());
+            try{
+                
+                Console.Write("Digite a Matricula do Aluno da série: ");
+                int indiceMatricula = int.Parse(Console.ReadLine());
 
-			var aluno = repositorio.RetornaPorMatricula(indiceMatricula);
+                var aluno = repositorio.RetornaPorMatricula(indiceMatricula);
 
-			Console.WriteLine(aluno);
-            Console.WriteLine("");
-            Console.WriteLine("Pressioone qualquer tecla ... !");
+                Console.WriteLine(aluno);
+                Console.WriteLine("");
+                Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
 
-            Console.ReadLine();
+                Console.ReadLine();
+
+
+            }catch (Exception)
+            {                
+                Console.Clear();
+                Console.WriteLine("");
+                Console.WriteLine("Opção Invalida !");
+                Console.WriteLine("");
+                Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
+
+                Console.ReadLine();
+
+
+            }
+            
 		}
+
+        private static void Mensagem()
+        {
+            var lista = repositorio.Lista();
+            if ( lista.Count == 0 )
+            {
+
+                Console.WriteLine("Nenhuma aluno cadastrada. ");
+                Console.WriteLine("");
+                Console.WriteLine("Pressione a tecla < ENTER > para continuar ...");
+
+                Console.ReadLine();
+                return;
+
+            }
+
+
+        }
+
 
         private static void ExcluirAluno()
 		{
+            Console.Clear();
+            Mensagem();
+
 			Console.Write("Digite o Matricula do Aluno: ");
 			int indiceMatricula = int.Parse(Console.ReadLine());
 
             Console.Clear();
-            Console.Write("Deseja realmente excluir ? [s/n] ");
-            char opcao = char.Parse(Console.ReadLine().ToUpper());
+            Console.Write("Deseja realmente excluir ? [ s / n ] ");
+            string opcao = Console.ReadLine().ToUpper();
 
             if(opcao.Equals("S")){
 
@@ -91,6 +137,19 @@ namespace DIO.AlunosAutistas
 		{
             Console.Clear();
 
+            var lista = repositorio.Lista();
+            if ( lista.Count == 0 )
+            {
+
+                Console.WriteLine("Nenhuma aluno cadastrada. ");
+                Console.WriteLine("");
+                Console.WriteLine("Pressioone a tecla < ENTER > para continuar ...");
+
+                Console.ReadLine();
+                return;
+
+            }
+
 			Console.Write("Digite a Matricula do Aluno: ");
 			int indiceMatricula = int.Parse(Console.ReadLine());
 
@@ -101,10 +160,10 @@ namespace DIO.AlunosAutistas
 			Console.Write("Digite o nivel de autismo entre as opções acima: ");
 			int entradaNivel = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o Nome do Aluno: ");
+			Console.Write("Informe o Nome do Aluno: ");
 			string entradaNome = Console.ReadLine();
 
-            Console.Write("Digite o comportamento do Nivel de Autismo: ");
+            Console.Write("Informe o comportamento em destaque no aluno: ");
 			string entradaComportamento = Console.ReadLine();
 
 			Console.Write("Digite a idade do Aluno: ");
@@ -128,7 +187,7 @@ namespace DIO.AlunosAutistas
         {
             Console.Clear();
 
-            Console.WriteLine("Listar Alunos");
+            Console.WriteLine("     [   Listar Alunos   ]     ");
 
             var lista = repositorio.Lista();
             
@@ -137,7 +196,7 @@ namespace DIO.AlunosAutistas
 
                 Console.WriteLine("Nenhuma aluno cadastrada. ");
                 Console.WriteLine("");
-                Console.WriteLine("Pressioone qualquer tecla ... !");
+                Console.WriteLine("Pressioone a tecla < ENTER > para continuar ...");
 
                 Console.ReadLine();
                 return;
@@ -147,16 +206,21 @@ namespace DIO.AlunosAutistas
             foreach ( var aluno in lista)
             {
 
+                if(aluno.retornaExcuido().Equals(false)){
+
+                
+
                 Console.WriteLine("-> Matricula {0}: - {1} ", aluno.retornaMatricula(), aluno.retornaNome());
+                }
+
+                //Console.WriteLine("-> Matricula {0}: - {1}  - {3} ", aluno.retornaMatricula(), aluno.////retornaNome(), aluno.retornaExcuido());
 
                 //Console.WriteLine(" --> {0}", aluno.ToString());
-
-
 
             }
 
                 Console.WriteLine("");
-                Console.WriteLine("Pressioone qualquer tecla ... !");
+                Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
 
                 Console.ReadLine();
 
@@ -167,26 +231,28 @@ namespace DIO.AlunosAutistas
 		{
             Console.Clear();
 
-			Console.WriteLine("Inserir nova Aluno");
-
+			Console.WriteLine("     [   Inserir novo Aluno   ]      ");
+            Console.WriteLine();
+             Console.WriteLine("Nível de Autismo");
 
 			foreach (int i in Enum.GetValues(typeof(Nivel)))
 			{
 				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Nivel), i));
 			}
-			Console.Write("Digite o nivel de autismo entre as opções acima: ");
+            Console.WriteLine();
+			Console.Write("Informe um valor referente ao nivel de autismo entre as opções acima: ");
 			int entradaNivel = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o Nome do Aluno: ");
+			Console.Write("Informe o Nome do Aluno: ");
 			string entradaNome = Console.ReadLine();
 
-            Console.Write("Digite o comportamento do Nivel de Autismo: ");
+            Console.Write("Informe o comportamento em destaque no aluno:: ");
 			string entradaComportamento = Console.ReadLine();
 
-			Console.Write("Digite a idade do Aluno: ");
+			Console.Write("Informe a idade do Aluno: ");
 			int entradaIdade = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o sexo do Aluno ");
+			Console.Write("Informe o sexo do Aluno ");
 			char entradaSexo = char.Parse(Console.ReadLine());
 
 			AlunosAutistas novoAluno = new AlunosAutistas(matricula: repositorio.ProximoId(),
