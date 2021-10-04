@@ -53,80 +53,122 @@ namespace DIO.AlunosAutistas
 
         private static void VisualizarAlunos()
 		{
-            try{
-                
-                Console.Write("Digite a Matricula do Aluno da série: ");
-                int indiceMatricula = int.Parse(Console.ReadLine());
+                        Console.Clear();
+            if(MatriculaVazia() != false){
 
-                var aluno = repositorio.RetornaPorMatricula(indiceMatricula);
-
-                Console.WriteLine(aluno);
-                Console.WriteLine("");
-                Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
-
-                Console.ReadLine();
-
-
-            }catch (Exception)
-            {                
-                Console.Clear();
-                Console.WriteLine("");
-                Console.WriteLine("Opção Invalida !");
-                Console.WriteLine("");
-                Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
-
-                Console.ReadLine();
-
-
-            }
-            
-		}
-
-        private static void Mensagem()
-        {
-            var lista = repositorio.Lista();
-            if ( lista.Count == 0 )
-            {
-
-                Console.WriteLine("Nenhuma aluno cadastrada. ");
-                Console.WriteLine("");
-                Console.WriteLine("Pressione a tecla < ENTER > para continuar ...");
-
-                Console.ReadLine();
+                Mensagem();
                 return;
 
             }
+            else
+            {                    
+                try{
+                    
+                    Console.Write("Informe o número da Matricula: ");
+                    int indiceMatricula = int.Parse(Console.ReadLine());
+
+                    var aluno = repositorio.RetornaPorMatricula(indiceMatricula);
+
+                    Console.Clear();
+                    Console.WriteLine("");
+                    Console.WriteLine(aluno);
+                    Console.WriteLine("");
+                    Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
+
+                    Console.ReadLine();
 
 
+                }catch (Exception)
+                {                
+                    Console.Clear();
+                    Console.WriteLine("");
+                    Console.WriteLine("Matricula Inexistente !");
+                    Console.WriteLine("");
+                    Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
+
+                    Console.ReadLine();
+
+                }
+
+            }
+
+
+		}
+
+        private static bool MatriculaVazia(){
+
+            bool confirma = false;
+            var lista = repositorio.Lista();
+            if ( lista.Count == 0 )
+            {
+                confirma = true;
+
+            }
+
+            return confirma;
+
+        }
+
+        private static void Mensagem()
+        {
+            Console.WriteLine("Nenhuma aluno cadastrada. ");
+            Console.WriteLine("");
+            Console.WriteLine("Pressione a tecla < ENTER > para continuar ...");
+
+            Console.ReadLine();
+            
         }
 
 
         private static void ExcluirAluno()
 		{
             Console.Clear();
-            Mensagem();
+            if(MatriculaVazia() != false){
 
-			Console.Write("Digite o Matricula do Aluno: ");
-			int indiceMatricula = int.Parse(Console.ReadLine());
+                Mensagem();
+                return;
 
-            Console.Clear();
-            Console.Write("Deseja realmente excluir ? [ s / n ] ");
-            string opcao = Console.ReadLine().ToUpper();
+            }
+            else
+            {
+                try
+                {
+                    Console.Write("Digite o Matricula do Aluno: ");
+                    int indiceMatricula = int.Parse(Console.ReadLine());
+                    //Mensagem();
 
-            if(opcao.Equals("S")){
+                    Console.Clear();
+                    Console.Write("Deseja realmente excluir ? [ s / n ] ");
+                    string opcao = Console.ReadLine().ToUpper();
 
-                repositorio.Excluir(indiceMatricula);
-                Console.Clear();
-                Console.Write("A exclusão foi efetuada com SUCESSO !");
-                Console.ReadLine();
-                Console.Clear();
+                    if(opcao.Equals("S")){
 
-            }else{
+                        repositorio.Excluir(indiceMatricula);
+                        Console.Clear();
+                        Console.Write("A exclusão foi efetuada com SUCESSO !");
+                        Console.ReadLine();
+                        Console.Clear();
 
-                Console.Clear();
-                Console.WriteLine("A exclusão foi CANCELADA !");
-                Console.ReadLine();
-                Console.Clear();
+                    }else{
+
+                        Console.Clear();
+                        Console.WriteLine("A exclusão foi CANCELADA !");
+                        Console.ReadLine();
+                        Console.Clear();
+
+                    }
+
+                }
+                catch (Exception)                
+                {
+                    Console.Clear();
+                    Console.WriteLine("");
+                    Console.WriteLine("Matricula Inexistente !");
+                    Console.WriteLine("");
+                    Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
+
+                    Console.ReadLine();
+                }
 
             }
 
@@ -136,50 +178,79 @@ namespace DIO.AlunosAutistas
         private static void AtualizarAluno()
 		{
             Console.Clear();
+            Console.Clear();
+            if(MatriculaVazia() != false){
 
-            var lista = repositorio.Lista();
-            if ( lista.Count == 0 )
-            {
-
-                Console.WriteLine("Nenhuma aluno cadastrada. ");
-                Console.WriteLine("");
-                Console.WriteLine("Pressioone a tecla < ENTER > para continuar ...");
-
-                Console.ReadLine();
+                Mensagem();
                 return;
 
             }
+            else
+            {
+                try
+                {                    
 
-			Console.Write("Digite a Matricula do Aluno: ");
-			int indiceMatricula = int.Parse(Console.ReadLine());
+                    Console.Write("Digite a Matricula do Aluno: ");
+                    int indiceMatricula = int.Parse(Console.ReadLine());
 
-			foreach (int i in Enum.GetValues(typeof(Nivel)))
-			{
-				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Nivel), i));
-			}
-			Console.Write("Digite o nivel de autismo entre as opções acima: ");
-			int entradaNivel = int.Parse(Console.ReadLine());
+                    foreach (int i in Enum.GetValues(typeof(Nivel)))
+                    {
+                        Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Nivel), i));
+                    }
+                    Console.Write("Digite o nivel de autismo entre as opções acima: ");
+                    int entradaNivel = int.Parse(Console.ReadLine());
 
-			Console.Write("Informe o Nome do Aluno: ");
-			string entradaNome = Console.ReadLine();
+                    Console.Write("Informe o Nome do Aluno: ");
+                    string entradaNome = Console.ReadLine();
 
-            Console.Write("Informe o comportamento em destaque no aluno: ");
-			string entradaComportamento = Console.ReadLine();
+                    Console.Write("Informe o comportamento em destaque no aluno: ");
+                    string entradaComportamento = Console.ReadLine();
 
-			Console.Write("Digite a idade do Aluno: ");
-			int entradaIdade = int.Parse(Console.ReadLine());
+                    Console.Write("Digite a idade do Aluno: ");
+                    int entradaIdade = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o sexo do Aluno ");
-			char entradaSexo = char.Parse(Console.ReadLine());
+                    Console.Write("Digite o sexo do Aluno ");
+                    char entradaSexo = char.Parse(Console.ReadLine());
 
-			AlunosAutistas atualizaAluno = new AlunosAutistas(matricula: indiceMatricula,
-										nivel: (Nivel)entradaNivel,
-										nome: entradaNome,
-                                        comportamento: entradaComportamento,
-										idade: entradaIdade,
-										sexo: entradaSexo);
+                    AlunosAutistas atualizaAluno = new AlunosAutistas(matricula: indiceMatricula,
+                                                nivel: (Nivel)entradaNivel,
+                                                nome: entradaNome,
+                                                comportamento: entradaComportamento,
+                                                idade: entradaIdade,
+                                                sexo: entradaSexo);
 
-			repositorio.Atualiza(indiceMatricula, atualizaAluno);
+                    repositorio.Atualiza(indiceMatricula, atualizaAluno);
+
+                   
+                }
+                catch (Exception)                
+                {
+                    Console.Clear();
+                    Console.WriteLine("");
+                    Console.WriteLine("Matricula Inexistente !");
+                    Console.WriteLine("");
+                    Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
+
+                    Console.ReadLine();
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ///----
+
+
 		}
 
                 
@@ -208,9 +279,8 @@ namespace DIO.AlunosAutistas
 
                 if(aluno.retornaExcuido().Equals(false)){
 
-                
-
-                Console.WriteLine("-> Matricula {0}: - {1} ", aluno.retornaMatricula(), aluno.retornaNome());
+                    Console.WriteLine("");
+                    Console.WriteLine("-> Matricula {0}: - {1} ", aluno.retornaMatricula(),                 aluno.retornaNome());
                 }
 
                 //Console.WriteLine("-> Matricula {0}: - {1}  - {3} ", aluno.retornaMatricula(), aluno.////retornaNome(), aluno.retornaExcuido());
@@ -221,7 +291,6 @@ namespace DIO.AlunosAutistas
 
                 Console.WriteLine("");
                 Console.WriteLine("Pressioone a tecla < ENTER > para continuar... ");
-
                 Console.ReadLine();
 
         }
@@ -233,7 +302,7 @@ namespace DIO.AlunosAutistas
 
 			Console.WriteLine("     [   Inserir novo Aluno   ]      ");
             Console.WriteLine();
-             Console.WriteLine("Nível de Autismo");
+            Console.WriteLine("Nível de Autismo");
 
 			foreach (int i in Enum.GetValues(typeof(Nivel)))
 			{
@@ -246,13 +315,13 @@ namespace DIO.AlunosAutistas
 			Console.Write("Informe o Nome do Aluno: ");
 			string entradaNome = Console.ReadLine();
 
-            Console.Write("Informe o comportamento em destaque no aluno:: ");
+            Console.Write("Informe o comportamento em destaque no aluno: ");
 			string entradaComportamento = Console.ReadLine();
 
 			Console.Write("Informe a idade do Aluno: ");
 			int entradaIdade = int.Parse(Console.ReadLine());
 
-			Console.Write("Informe o sexo do Aluno ");
+			Console.Write("Informe o sexo do Aluno: ");
 			char entradaSexo = char.Parse(Console.ReadLine());
 
 			AlunosAutistas novoAluno = new AlunosAutistas(matricula: repositorio.ProximoId(),
